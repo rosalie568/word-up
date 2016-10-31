@@ -1,7 +1,7 @@
 
 // ----------------- MODEL -----------------
 
-var GAME_DURATION = 60;
+var GAME_DURATION = 10;
 
 // all the stuff we need to keep track of
 var model = {
@@ -212,7 +212,7 @@ function render() {
     if (gameOver) {
         // TODO 9
         // disable the text box and clear its contents
-        $("#textbox").empty();
+        $("#textbox").val("");
         $("#textbox").attr('disabled', true);
 
     }
