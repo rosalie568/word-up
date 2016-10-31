@@ -55,7 +55,7 @@ function addNewWordSubmission(word) {
 
 
     // if the word is valid and hasn't already been used, add it
-    if (containsOnlyAllowedLetters(word) && alreadyUsed == false) {
+    if (containsOnlyAllowedLetters(word) && alreadyUsed == word) {
         model.wordSubmissions.push({ word: word });
         // and now we must also determine whether this is actually a real word
         checkIfWordIsReal(word);
@@ -99,7 +99,6 @@ function checkIfWordIsReal(word) {
     });
 }
 
-
 // ----------------- DOM EVENT HANDLERS -----------------
 
 $(document).ready(function() {
@@ -114,14 +113,14 @@ $(document).ready(function() {
     // Add another event handler with a callback function.
     // When the textbox content changes,
     // update the .currentAttempt property of the model and re-render
-/*    $("#textbox").oninput = function() {myFunction()};
+    $("#textbox").oninput = function() { myFunction()};
 
     function myFunction() {
         var text = $("#textbox").val();
         console.log(text);
         model.currentAttempt = text;
         render();
-    } */
+    }
 
     // when the form is submitted
     $("#word-attempt-form").submit(function(evt) {
@@ -144,7 +143,6 @@ $(document).ready(function() {
 
 
 // ----------------- VIEW -----------------
-
 /**
  * Updates everything on screen based on the current state of the model
  */
@@ -170,8 +168,10 @@ function render() {
     // clear stuff
     $("#allowed-letters").empty();
     $("#word-submissions").empty();
+
     // TODO 10
     // Add a few things to the above code block (underneath "// clear stuff").
+    $("#textbox").attr('disabled', false);
 
 
     // reveal the #game container
@@ -186,7 +186,7 @@ function render() {
 
 
     // Set the value of the textbox
-    $("#textbox").val(model.currentAttempt);
+     $("#textbox").val(model.currentAttempt);
 
     // TODO 3
     // Give focus to the textbox.
@@ -211,6 +211,8 @@ function render() {
     if (gameOver) {
         // TODO 9
         // disable the text box and clear its contents
+        $("#textbox").empty();
+        $("#textbox").attr('disabled', true);
 
     }
 }
