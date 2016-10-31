@@ -1,7 +1,7 @@
 
 // ----------------- MODEL -----------------
 
-var GAME_DURATION = 10;
+var GAME_DURATION = 60;
 
 // all the stuff we need to keep track of
 var model = {
@@ -115,7 +115,6 @@ $(document).ready(function() {
     // update the .currentAttempt property of the model and re-render
     $("#textbox").on( "input", function() {
         var text = $("#textbox").val();
-        console.log(text);
         model.currentAttempt = text;
         render();
     });
@@ -127,6 +126,7 @@ $(document).ready(function() {
 
         // add a new word from whatever they typed
         addNewWordSubmission(model.currentAttempt);
+        //console.log(model.currentAttempt);
 
         // clear away whatever they typed
         model.currentAttempt = "";
@@ -201,6 +201,7 @@ function render() {
 
         // TODO 8
         // append the red letter chips to the form
+        $("#word-attempt-form").append(redLetterChips);
 
     }
 
@@ -288,7 +289,12 @@ function isDisallowedLetter(letter) {
     // TODO 7
     // This should return true if the letter is not an element of
     // the .allowedLetters list in the model
-    return false;
+    if( model.allowedLetters.indexOf(letter) == -1 ) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 /**
