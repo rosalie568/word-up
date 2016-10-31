@@ -55,7 +55,7 @@ function addNewWordSubmission(word) {
 
 
     // if the word is valid and hasn't already been used, add it
-    if (containsOnlyAllowedLetters(word) && alreadyUsed == word) {
+    if (containsOnlyAllowedLetters(word) && alreadyUsed == false) {
         model.wordSubmissions.push({ word: word });
         // and now we must also determine whether this is actually a real word
         checkIfWordIsReal(word);
@@ -113,14 +113,12 @@ $(document).ready(function() {
     // Add another event handler with a callback function.
     // When the textbox content changes,
     // update the .currentAttempt property of the model and re-render
-    $("#textbox").oninput = function() { myFunction()};
-
-    function myFunction() {
+    $("#textbox").on( "input", function() {
         var text = $("#textbox").val();
         console.log(text);
         model.currentAttempt = text;
         render();
-    }
+    });
 
     // when the form is submitted
     $("#word-attempt-form").submit(function(evt) {
@@ -186,8 +184,7 @@ function render() {
 
 
     // Set the value of the textbox
-    var words =$("#textbox").val();
-    model.currentAttempt = words;
+    $("#textbox").val(model.currentAttempt);
 
     // TODO 3
     // Give focus to the textbox.
