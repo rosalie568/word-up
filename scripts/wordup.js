@@ -1,7 +1,7 @@
 
 // ----------------- MODEL -----------------
 
-var GAME_DURATION = 60;
+var GAME_DURATION = 10;
 
 // all the stuff we need to keep track of
 var model = {
@@ -169,6 +169,8 @@ function render() {
 
     // TODO 10
     // Add a few things to the above code block (underneath "// clear stuff").
+    $("#textbox").removeClass("bad-attempt");
+    $("#word-attempt-form span").remove();
     $("#textbox").attr('disabled', false);
 
 
