@@ -1,7 +1,7 @@
 
 // ----------------- MODEL -----------------
 
-var GAME_DURATION = 10;
+var GAME_DURATION = 60;
 
 // all the stuff we need to keep track of
 var model = {
@@ -53,9 +53,8 @@ function addNewWordSubmission(word) {
     // TODO 21
     // replace the hardcoded 'false' with the real answer
 
-
     // if the word is valid and hasn't already been used, add it
-    if (containsOnlyAllowedLetters(word) && alreadyUsed == false) {
+    if (containsOnlyAllowedLetters(word) && model.wordSubmissions.indexOf(word) == -1 ) {
         model.wordSubmissions.push({ word: word });
         // and now we must also determine whether this is actually a real word
         checkIfWordIsReal(word);
@@ -73,7 +72,7 @@ function checkIfWordIsReal(word) {
     // make an AJAX call to the Pearson API
     $.ajax({
         // TODO 13 what should the url be?
-        url: "www.todo13.com",
+        url: "https://wordsapiv1.p.mashape.com/words/" + word,
         success: function(response) {
             console.log("We received a response from Pearson!");
 
@@ -178,12 +177,13 @@ function render() {
     $("#game").show();
 
     // render the letter tiles
-    var letterChips = model.allowedLetters.map(letterChip)
+    var letterChips = model.allowedLetters.map(letterChip);
     $("#allowed-letters").append(letterChips);
 
     // TODO 11
     // Render the word submissions
-
+    var wordSubmit = model.wordSubmissions.map(wordSubmissionChip);
+    $("#word-submissions").append(wordSubmit);
 
     // Set the value of the textbox
     $("#textbox").val(model.currentAttempt);
