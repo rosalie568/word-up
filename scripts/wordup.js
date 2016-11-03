@@ -315,7 +315,11 @@ function disallowedLettersInWord(word) {
 function containsOnlyAllowedLetters(word) {
     // TODO 12
     // Return the actual answer.
-    return true;
+    console.log(disallowedLettersInWord(word) );
+    if( disallowedLettersInWord(word) == "" )
+        return true;
+    else
+        return false;
 }
 
 /**
