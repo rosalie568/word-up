@@ -53,8 +53,18 @@ function addNewWordSubmission(word) {
     // TODO 21
     // replace the hardcoded 'false' with the real answer
 
+    var first = model.wordSubmissions.indexOf( { word : word } );
+    var alreadyUsed;
+
+    if (first == -1 ) {
+        alreadyUsed = false;
+    }
+    else {
+        alreadyUsed = true;
+    }
+
     // if the word is valid and hasn't already been used, add it
-    if (containsOnlyAllowedLetters(word) && model.wordSubmissions.indexOf(word) == -1 ) {
+    if (containsOnlyAllowedLetters(word) && alreadyUsed == false ) {
         model.wordSubmissions.push({ word: word });
         // and now we must also determine whether this is actually a real word
         checkIfWordIsReal(word);
@@ -72,7 +82,9 @@ function checkIfWordIsReal(word) {
     // make an AJAX call to the Pearson API
     $.ajax({
         // TODO 13 what should the url be?
-        url: "https://wordsapiv1.p.mashape.com/words/" + word,
+        url: "https://api.pearson.com/v2/dictionaries/lasde/entries",
+        data: word,
+
         success: function(response) {
             console.log("We received a response from Pearson!");
 
@@ -315,7 +327,6 @@ function disallowedLettersInWord(word) {
 function containsOnlyAllowedLetters(word) {
     // TODO 12
     // Return the actual answer.
-    console.log(disallowedLettersInWord(word) );
     if( disallowedLettersInWord(word) == "" )
         return true;
     else
