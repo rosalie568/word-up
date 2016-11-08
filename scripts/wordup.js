@@ -53,14 +53,10 @@ function addNewWordSubmission(word) {
     // TODO 21
     // replace the hardcoded 'false' with the real answer
 
-    var first = model.wordSubmissions.indexOf( { word : word } );
-    var alreadyUsed;
-
-    if (first == -1 ) {
-        alreadyUsed = false;
-    }
-    else {
-        alreadyUsed = true;
+    var alreadyUsed = false;
+    for( var i=0; i<model.wordSubmissions.length; i++ ) {
+        if( model.wordSubmissions[i].word == word)
+            alreadyUsed = true;
     }
 
     // if the word is valid and hasn't already been used, add it
