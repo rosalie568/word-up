@@ -281,6 +281,12 @@ function wordSubmissionChip(wordSubmission) {
 
         // TODO 18
         // give the scoreChip appropriate css classes
+        if( wordSubmission.isRealWord == true ) {
+            scoreChip.attr("style", "background-color: blue; color: white; font-size: 17px");
+        }
+        else {
+            scoreChip.attr("style", "background-color: red; color: white; font-size: 17px");
+        }
 
         // TODO 16
         // append scoreChip into wordChip
