@@ -277,15 +277,16 @@ function wordSubmissionChip(wordSubmission) {
         // TODO 17
         // give the scoreChip appropriate text content
         var score = wordScore(wordSubmission.word);
-        scoreChip.text(score);
 
         // TODO 18
         // give the scoreChip appropriate css classes
         if( wordSubmission.isRealWord == true ) {
-            scoreChip.attr("style", "background-color: blue; color: white; font-size: 17px");
+            scoreChip.text(score);
+            scoreChip.attr("style", "background-color: blue; color: white; font-size: 13px; padding: 2px; margin: 2px; font-weight: bold");
         }
         else {
-            scoreChip.attr("style", "background-color: red; color: white; font-size: 17px");
+            scoreChip.text("X");
+            scoreChip.attr("style", "background-color: red; color: white; font-size: 13px; padding: 2px; margin: 2px; font-weight: bold");
         }
 
         // TODO 16
