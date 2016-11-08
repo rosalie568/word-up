@@ -267,14 +267,17 @@ function letterChip(letter) {
  */
 function wordSubmissionChip(wordSubmission) {
     var wordChip = $("<span></span>")
-        .text(wordSubmission.word)
+        .text(wordSubmission.word + " ")
         .attr("class", "tag tag-lg word-submission");
 
     // if we know the status of this word (real word or not), then add a green score or red X
     if (wordSubmission.hasOwnProperty("isRealWord")) {
         var scoreChip = $("<span></span>").text("⟐");
+
         // TODO 17
         // give the scoreChip appropriate text content
+        var score = wordScore(wordSubmission.word);
+        scoreChip.text(score);
 
         // TODO 18
         // give the scoreChip appropriate css classes
