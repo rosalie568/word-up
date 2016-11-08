@@ -82,8 +82,7 @@ function checkIfWordIsReal(word) {
     // make an AJAX call to the Pearson API
     $.ajax({
         // TODO 13 what should the url be?
-        url: "https://api.pearson.com/v2/dictionaries/lasde/entries",
-        data: word,
+        url: "https://api.pearson.com/v2/dictionaries/lasde/entries?headword=" + word,
 
         success: function(response) {
             console.log("We received a response from Pearson!");
@@ -95,11 +94,24 @@ function checkIfWordIsReal(word) {
             // Replace the 'true' below.
             // If the response contains any results, then the word is legitimate.
             // Otherwise, it is not.
-            var theAnswer = true;
+            var theAnswer = response.results;
+            var realWord;
+            if( theAnswer == "") {
+                console.log(false);
+                realWord = false;
+            }
+            else {
+                console.log(true);
+                realWord = true;
+            }
 
             // TODO 15
             // Update the corresponding wordSubmission in the model
-
+            for( var i=0; i< model.wordSubmissions.length; i++){
+                if(model.wordSubmissions[i].word == word ) {
+                    model.wordSubmissions[i].isRealWord = realWord;
+                }
+            }
 
             // re-render
             render();
