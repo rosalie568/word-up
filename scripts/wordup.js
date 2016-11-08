@@ -281,6 +281,7 @@ function wordSubmissionChip(wordSubmission) {
 
         // TODO 16
         // append scoreChip into wordChip
+        wordChip.append( scoreChip );
 
     }
 
