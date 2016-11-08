@@ -408,7 +408,11 @@ function currentScore() {
 
     // TODO 20
     // return the total sum of the word scores
-    return 0;
+    var sum = 0;
+    for(var i=0; i < model.wordSubmissions.length; i++) {
+        sum += wordScores[i];
+    }
+    return sum;
 }
 
 
